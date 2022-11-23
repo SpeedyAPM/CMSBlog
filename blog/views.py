@@ -1,12 +1,15 @@
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth import authenticate, login
+from blog.models import Blog
 
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
 
 def blog(request):
-    return render(request, 'bloghome.html')
+    blogs = Blog.objects.all()
+    context = {'blogs':blogs}
+    return render(request, 'bloghome.html', context)
 
 def contact(request):
     return render(request, 'contact.html')
