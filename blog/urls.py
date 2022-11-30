@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 app_name = 'blog'
 
@@ -27,3 +28,4 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('login/', views.user_login, name='user_login'),
 ]
+urlpatterns += staticfiles_urlpatterns()
