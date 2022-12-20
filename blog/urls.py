@@ -21,11 +21,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 app_name = 'blog'
 
 urlpatterns = [
-    path('', views.home, name='home'),
+
     path('blog/', views.blog, name='blog'),
     path('search/', views.search, name='search'),
     path('blogpost/<str:slug>', views.blogpost, name='blog'),
-    path('contact/', views.contact, name='contact'),
-    path('login/', views.user_login, name='user_login'),
+
 ]
 urlpatterns += staticfiles_urlpatterns()
