@@ -34,27 +34,26 @@
                 {% else %}
                 {% load static %}
                 {% static "blog/Blog_pic.png" %}
-                {% endif %} " alt="{{blog.title}}" class="img-fluid">
+                {% endif %} " alt="{{blog.title}}" class="img-fluid-resize">
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">{{ blog.title }}</a>
+                <a href="/blogpost/{{blog.slug}}">{{ blog.title }}</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{blog.author}}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
                 </ul>
               </div>
 
               <div class="entry-content">
                 <p>
-                  {{ blog.content }}
+                  {{ blog.content|slice:250 }}...
                 </p>
                 <div class="read-more">
-                  <a href="blog-single.html">Read More</a>
+                  <a href="/blogpost/{{blog.slug}}">Read More</a>
                 </div>
               </div>
 
@@ -74,7 +73,16 @@
           <div class="col-lg-4">
 
             <div class="sidebar">
-
+              {% if request.user.is_authenticated %}
+              <h3 class="sidebar-title">User panel</h3>
+              <div class="sidebar-item categories">
+                You are logged in as <b>{{request.user}}</b>.
+                <ul>
+                  <li><a href="/admin">Admin panel</a></li>
+                  <li><a href="/accounts/logout">Logout</a></li>
+                </ul>
+              </div>
+              {% endif %}
               <h3 class="sidebar-title">Search</h3>
               <div class="sidebar-item search-form">
                 <form action="">

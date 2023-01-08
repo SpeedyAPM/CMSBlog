@@ -14,6 +14,7 @@ class Blog(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
     cover = models.ImageField(upload_to='images/', null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
