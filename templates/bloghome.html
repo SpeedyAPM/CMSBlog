@@ -49,10 +49,11 @@
                                     <p>
                                         {{ blog.content|slice:250 }}...
                                     </p>
-                                    <div>
+                                    <div class="entry-meta">
+                                    <i class="bi bi-tag"></i>
                                         {% for tags in blog.tags.all %}
                                             <a href="{% url "blog:posts_by_tag" tag_slug=tags.slug %}"
-                                               class="badge text-decoration-none bg-secondary">
+                                               class="badge text-decoration-none bg-light">
                                                 {{ tags }}
                                             </a>
                                         {% endfor %}
