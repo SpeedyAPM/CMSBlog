@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
     <main id="main">
-
         <!-- ======= Blog Section ======= -->
         <section class="breadcrumbs">
             <div class="container">
-
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Blog</h2>
 
@@ -14,27 +12,23 @@
                         <li>Blog</li>
                     </ol>
                 </div>
-
             </div>
         </section><!-- End Blog Section -->
 
         <!-- ======= Blog Section ======= -->
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
-
                 <div class="row">
-
                     <div class="col-lg-8 entries">
                         {% for blog in pages %}
                             <article class="entry">
-
                                 <div class="entry-img">
                                     <img src="{% if blog.cover %}
-                {{ blog.cover.url }}
-                {% else %}
-                {% load static %}
-                {% static "blog/Blog_pic.png" %}
-                {% endif %} " alt="{{ blog.title }}" class="img-fluid-resize">
+                                    {{ blog.cover.url }}
+                                    {% else %}
+                                    {% load static %}
+                                    {% static "blog/Blog_pic.png" %}
+                                    {% endif %} " alt="{{ blog.title }}" class="img-fluid-resize">
                                 </div>
 
                                 <h2 class="entry-title">
@@ -76,16 +70,23 @@
                             <ul class="justify-content-center">
                                 {% if pages.has_previous %}
                                     <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page={{ pages.previous_page_number }}">Previous</a></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="?page={{ pages.previous_page_number }}">Previous</a>
+                                    </li>
                                 {% endif %}
 
                                 {% for i in nums %}
-                                    <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                                    </li>
                                 {% endfor %}
 
                                 {% if pages.has_next %}
-                                    <li class="page-item"><a class="page-link" href="?page={{ pages.next_page_number }}">Next</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page={{ pages.paginator.num_pages }}">Last &raquo</a></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="?page={{ pages.next_page_number }}">Next</a></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="?page={{ pages.paginator.num_pages }}">Last
+                                        &raquo</a></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -107,8 +108,10 @@
                             {% endif %}
                             <h3 class="sidebar-title">Search</h3>
                             <div class="sidebar-item search-form">
-                                <form action="">
-                                    <input type="text">
+                                <form action="{% url 'blog:search' %}">
+                                    {#                                    {% csrf_token %}#}
+                                    <input type="text" {% if search %}value="{{ search }}"
+                                           {% else %}placeholder="Search"{% endif %} name="search">
                                     <button type="submit"><i class="bi bi-search"></i></button>
                                 </form>
                             </div><!-- End sidebar search formn-->
