@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
 {% block body %}
     <main id="main">
-        <!-- ======= Blog Section ======= -->
-        <section class="breadcrumbs">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2>Blog</h2>
 
-                    <ol>
-                        <li><a href="/">Home</a></li>
-                        <li>Blog</li>
-                    </ol>
-                </div>
-            </div>
-        </section><!-- End Blog Section -->
 
         <!-- ======= Blog Section ======= -->
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
                 <div class="row">
                     <div class="col-lg-8 entries">
+                        {% if not pages %}
+                            <div class="card text-center">
+                            <div class="card-header">
+
+                                </div>
+                                    <div class="card-body">
+                                    <h5 class="card-title">Oops...</h5>
+                                    <p class="card-text">Unfortunately we did not find what you are looking for, please try again.</p>
+
+                                    </div>
+                                <div class="card-footer text-muted">
+
+                            </div>
+                            </div>
+
+                        {% endif %}
+
+
                         {% for blog in pages %}
                             <article class="entry">
                                 <div class="entry-img">

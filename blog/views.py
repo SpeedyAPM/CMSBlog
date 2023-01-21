@@ -40,7 +40,8 @@ def search(request):
     search_post = request.GET.get("search")
 
     if search_post:
-        posts = BlogPost.objects.filter(Q(title__icontains=search_post) | Q(content__icontains=search_post))
+        posts = BlogPost.objects.filter(
+            Q(title__icontains=search_post) | Q(content__icontains=search_post) | Q(tags__name__icontains=search_post))
     else:
         posts = BlogPost.objects.all()
 
