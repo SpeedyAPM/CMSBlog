@@ -4,6 +4,7 @@ from .forms import NewUserForm
 from django.contrib import messages
 
 
+
 def home(request):
     return render(request, 'index.html')
 
@@ -25,3 +26,5 @@ def register_request(request):
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render(request=request, template_name="registration/register.html", context={"register_form": form})
+
+

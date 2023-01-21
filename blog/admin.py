@@ -1,10 +1,10 @@
 from django.contrib import admin
-from blog.models import Blog
+from blog.models import BlogPost
 # Register your models here.
 
 #admin.site.register(Blog)
 
-@admin.register(Blog)
+@admin.register(BlogPost)
 class BlogAdmin(admin.ModelAdmin):
     list_display = ("title", "author", )
 

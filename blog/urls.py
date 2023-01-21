@@ -24,7 +24,9 @@ urlpatterns = [
 
     path('blog/', views.blog, name='blog'),
     path('search/', views.search, name='search'),
-    path('blogpost/<str:slug>', views.blogpost, name='blog'),
+    path('blogpost/<str:slug>/', views.blogpost, name='blog'),
+    path('tags/<str:tag_slug>/', views.posts_by_tag, name='posts_by_tag'),
+
 
 ]
 urlpatterns += staticfiles_urlpatterns()

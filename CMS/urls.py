@@ -29,6 +29,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path("accounts/register/", views.register_request, name="register"),
 
+
+
 ]
 
 if settings.DEBUG:  # new
