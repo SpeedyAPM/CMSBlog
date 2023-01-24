@@ -22,6 +22,7 @@ app_name = 'blog'
 
 urlpatterns = [
 
+    path('', views.paragraph, name='paragraph'),
     path('blog/', views.blog, name='blog'),
     path('search/', views.search, name='search'),
     path('blogpost/<str:slug>/', views.blogpost, name='blog'),

@@ -23,3 +23,13 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+
+class HomepageParagraph(models.Model):
+    sno = models.AutoField(primary_key=True)
+    title = models.TextField(blank=True)
+    subtitle = models.TextField(blank=True)
+    content = models.TextField()
+    cover = models.ImageField(upload_to='images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title

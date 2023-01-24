@@ -1,16 +1,26 @@
 {% extends 'base.html'%}
 {% block body %}
 <main id="main">
-    <h1>This is my index page</h1>
     {% if request.user.is_authenticated %}
     <h3>Hello, {{request.user}}!</h3>
     {% endif %}
+    {% for paragraph in paragraphs %}
+    {% if paragraph.title == "" %}
+    {% else %}
+    <h1>{{ paragraph.title }}</h1>
+    {% endif %}
+    {% if paragraph.subtitle == "" %}
+    {% else %}
+    <h3>{{ paragraph.subtitle }}</h3>
+    {% endif %}
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac condimentum dui. Proin nec nunc sed sapien sagittis auctor vitae eget nisi. Pellentesque tellus risus, venenatis quis nisi non, convallis tristique tellus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque sem sem, accumsan sed nisi sit amet, aliquam pharetra ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a hendrerit ex. Sed maximus magna cursus justo finibus accumsan. Nulla vel porta turpis. Maecenas eu feugiat mi. Aenean eu egestas sem. Integer ut finibus magna. Vestibulum aliquet massa viverra aliquet pellentesque. Nam et tempus dolor, non ornare ante. Praesent ac leo elit.
-
+        {{ paragraph.content }}
     </p>
-    <p>
-        Mauris ante neque, ornare vitae euismod non, elementum id tellus. Nam elementum nunc nec massa malesuada sodales. Pellentesque porta elit luctus, lacinia justo pretium, aliquet tortor. In sit amet enim non quam lacinia bibendum. Vivamus facilisis felis leo, ut sodales tortor tristique ac. Curabitur semper libero quis elit suscipit, id gravida quam placerat. Sed eu eleifend sapien. Nulla pulvinar ullamcorper ipsum, non aliquam orci egestas quis. Sed congue, ex vitae imperdiet feugiat, ex diam semper ligula, a dapibus felis nisl ut ligula. Duis ut lacinia lacus, quis facilisis nibh. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In accumsan eros placerat quam commodo tincidunt.
-    </p>
+        {% if paragraph.cover %}
+        <div class="entry-img">
+            <img src="{{ paragraph.cover.url }}" alt="{{ paragraph.title }}" class="img-fluid-resize">
+        </div>
+        {% endif %}
+    {% endfor %}
 </main>
 {% endblock body %}

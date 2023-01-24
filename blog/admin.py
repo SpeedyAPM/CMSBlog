@@ -1,5 +1,6 @@
 from django.contrib import admin
 from blog.models import BlogPost
+from blog.models import HomepageParagraph
 # Register your models here.
 
 #admin.site.register(Blog)
@@ -19,6 +20,7 @@ class BlogAdmin(admin.ModelAdmin):
                 form.base_fields['slug'].disabled = True
                 form.base_fields['content'].disabled = True
                 form.base_fields['cover'].disabled = True
+                form.base_fields['tags'].disabled = True
         return form
 
     #delete bulk (by selecting) only for superuser
@@ -36,3 +38,7 @@ class BlogAdmin(admin.ModelAdmin):
         if obj:
             is_author = (obj.author == request.user)
         return is_superuser or is_author
+
+@admin.register(HomepageParagraph)
+class HomepageParagraph(admin.ModelAdmin):
+    list_display = ("sno", "title", "subtitle", "content",)

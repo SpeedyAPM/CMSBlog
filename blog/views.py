@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from taggit.models import Tag
 
 from blog.models import BlogPost
+from blog.models import HomepageParagraph
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -28,6 +29,10 @@ def blog(request):
     context = get_posts_page(posts, request)
     return render(request, 'bloghome.html', context)
 
+def paragraph(request):
+    paragraphs = HomepageParagraph.objects.all()
+    context = {'paragraphs': paragraphs}
+    return render(request, 'index.html', context)
 
 def blogpost(request, slug):
     blog = BlogPost.objects.get(slug=slug)
@@ -53,4 +58,4 @@ def search(request):
 
 def posts_by_tag(request, tag_slug):
     posts = BlogPost.objects.filter(tags__slug=tag_slug).order_by("-created_on")
-    return get_posts_page(posts, request)
+    return render(request, 'bloghome.html', get_posts_page(posts, request))

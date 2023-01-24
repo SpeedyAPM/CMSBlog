@@ -22,7 +22,7 @@ from CMS import views
 app_name = "CMS"
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    #path('', views.home, name='home'),
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path('contact/', views.contact, name='contact'),
